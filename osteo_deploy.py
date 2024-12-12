@@ -48,15 +48,15 @@ with col1:
     st.markdown("#### Personal Information")
     age = st.slider("Age", 0, 100, 20)
     gender = st.selectbox("Gender", ("Male", "Female"))
-    race = st.selectbox("Race/Ethnicity", ("African American", "Caucasian", "Other"))
-    body_weight = st.selectbox("Underweight", ("No", "Yes"))
+    race = st.selectbox("Race/Ethnicity", ("Asian", "African American", "Caucasian"))
+    body_weight = st.selectbox("Weight", ("Underweight", "Normal", "Overweight"))
 
 # Lifestyle Factors (Physical Activity, Smoking, Alcohol Consumption) - in second column
 with col2:
     st.markdown("#### Lifestyle Factors")
-    physical_activity = st.selectbox("Sedentary Lifestyle", ("No", "Yes"))
+    physical_activity = st.selectbox("Physical Activity Level", ("Active", "Sedentary"))
     smoking = st.selectbox("Smoking", ("No", "Yes"))
-    alcohol_consumption = st.selectbox("Moderate Alcohol Consumption", ("No", "Yes"))
+    alcohol_consumption = st.selectbox("Alcohol Consumption", ("None", "Moderate", "Excessive"))
 
 # Health and Medical Conditions - Title Spanning Both Columns
 st.markdown("### Health and Medical Conditions", unsafe_allow_html=True)
@@ -73,8 +73,8 @@ with col3:
 
 # Medical History (Calcium Intake, Vitamin D Intake, Medications, Prior Fractures) - in fourth column
 with col4:
-    calcium_intake = st.selectbox("Low Calcium Intake", ("No", "Yes"))
-    vitamin_d_intake = st.selectbox("Insufficient Vitamin D Intake", ("No", "Yes"))
+    calcium_intake = st.selectbox("Calcium Intake", ("Low", "Moderate", "High"))
+    vitamin_d_intake = st.selectbox("Vitamin D Intake", ("Insufficient", "Sufficient"))
     medications_corticosteroids = st.selectbox("Corticosteroid Use", ("No", "Yes"))
     prior_fractures = st.selectbox("Prior Fractures", ("No", "Yes"))
 
@@ -88,12 +88,12 @@ data = {
     'Gender-Female': 1 if gender == "Female" else 0,
     'Hormonal Changes-Postmenopausal': binary_choice(hormonal_changes),
     'Family History-Yes': binary_choice(family_history),
-    'Body Weight-Underweight': binary_choice(body_weight),
-    'Calcium Intake-Low': binary_choice(calcium_intake),
-    'Vitamin D Intake-Insufficient': binary_choice(vitamin_d_intake),
-    'Physical Activity-Sedentary': binary_choice(physical_activity),
+    'Body Weight-Underweight': 1 if body_weight == "Underweight" else 0,
+    'Calcium Intake-Low': 1 if calcium_intake == "Low" else 0,
+    'Vitamin D Intake-Insufficient': 1 if vitamin_d_intake == "Insufficient" else 0,
+    'Physical Activity-Sedentary': 1 if physical_activity == "Sedentary" else 0,
     'Smoking-Yes': binary_choice(smoking),
-    'Alcohol Consumption-Moderate': binary_choice(alcohol_consumption),
+    'Alcohol Consumption-Moderate': 1 if alcohol_consumption == "Moderate" else 0,
     'Medications-Corticosteroids': binary_choice(medications_corticosteroids),
     'Prior Fractures-Yes': binary_choice(prior_fractures)
 }
